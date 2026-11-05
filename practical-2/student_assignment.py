@@ -99,10 +99,13 @@ Reactive defence:
 """
 
 from collections import deque
+from contextlib import contextmanager
+from contextvars import ContextVar
 import math
 import multiprocessing as mp
 import random
 import sys
+import time
 from typing import Dict, List, Optional
 
 from game import Action, GameConfig, GameState, GhostBehavior, PacmanGame
@@ -113,6 +116,8 @@ from game import Action, GameConfig, GameState, GhostBehavior, PacmanGame
 # ──────────────────────────────────────────────────────────────────────────────
 
 MOVE_TIME_LIMIT = 5.0
+SEARCH_TIME_BUDGET = 4.0  # Leave time for worker startup and returning the action.
+_SEARCH_DEADLINE = ContextVar('search_deadline', default=None)
 
 _timeout_counter: Dict[str, int] = {}
 
@@ -152,9 +157,9 @@ def _timed(agent_name: str, obs: Dict, game: PacmanGame, **kwargs) -> Action:
 # AGENT SETTINGS — tune these
 # ──────────────────────────────────────────────────────────────────────────────
 # "depth" means plies: one ply = one game.step() (player acts, ghosts react).
-# The player has up to 12 legal actions, so a full tree has ~12^depth nodes.
+# The player has up to 13 legal actions including STAY: roughly 13^depth nodes.
 
-MINIMAX_DEPTH      = 3     # plain minimax: every extra ply ≈ 12× slower
+MINIMAX_DEPTH      = 3     # plain minimax: every extra ply can be ~13x slower
 ALPHABETA_DEPTH    = 6     # pruning makes much deeper search affordable
 
 MCTS_ITERATIONS    = 500   # selection → backprop cycles per move
@@ -269,13 +274,43 @@ def evaluate_state(game: PacmanGame) -> float:
 # Agent 1 — Minimax
 # ──────────────────────────────────────────────────────────────────────────────
 
+class _SearchTimeout(Exception):
+    """Stop an incomplete search depth without discarding completed results."""
+
+
+def _check_search_deadline() -> None:
+    deadline = _SEARCH_DEADLINE.get()
+    if deadline is not None and time.perf_counter() >= deadline:
+        raise _SearchTimeout()
+
+
+@contextmanager
+def _search_successor(game: PacmanGame, action: Action):
+    """Simulate on a clone, restoring the RNG after the entire child search.
+
+    Sibling branches start with common random numbers. Deeper steps use the
+    advanced stream, but planning never consumes the live game's RNG stream.
+    This is a sampled transition tree, not exhaustive stochastic ghost outcomes.
+    """
+    _check_search_deadline()
+    rng_state = random.getstate()
+    try:
+        child = game.clone()
+        child.step(action)
+        yield child
+    finally:
+        random.setstate(rng_state)
+
+
 def minimax_agent(obs: Dict, game: PacmanGame,
                   depth: int = MINIMAX_DEPTH) -> Action:
     """
     Minimax search agent.
 
     The player (MAX node) tries to maximise evaluate_state().
-    The ghosts collectively act as the MIN player and try to minimise it.
+    MIN follows the scaffold's proxy adversary: choose the worst complete
+    game.step continuation from the same legal-action API. It is not a separate
+    ghost-only turn; every step already includes the engine's ghost reaction.
 
     Args:
         obs:   Current observation dict (from game.reset / game.step).
@@ -285,33 +320,61 @@ def minimax_agent(obs: Dict, game: PacmanGame,
     Returns:
         The Action with the highest minimax value.
 
-    TODO:
-      1. For each legal action:
-           a. Clone the game.
-           b. Apply the action with clone.step(action).
-           c. Call _minimax(clone, depth-1, maximising=False).
-           d. Track the best-valued action.
-      2. Return the best action.
+    Search increasing depths up to the requested depth. If the internal budget
+    expires, return the last completed depth's choice, or a legal fallback if
+    no depth completed. Search always operates on clones.
 
-    Note: with ammo the player has up to 12 legal actions (4 moves + 8 shots),
-    so the tree grows ~12^depth. Keep MINIMAX_DEPTH small — Agent 2
+    Note: with ammo the player has up to 13 actions (4 moves + 8 shots + STAY),
+    so the tree grows ~13^depth. Keep MINIMAX_DEPTH small — Agent 2
     (alpha-beta) is where you go deep.
     """
-    raise NotImplementedError("Implement minimax_agent().")
+    if isinstance(depth, bool) or not isinstance(depth, int) or depth < 1:
+        raise ValueError("depth must be a positive integer.")
+    actions = game.get_legal_actions()
+    if game.done or not actions:
+        return Action.STAY
+    best_action = actions[0]
+    token = _SEARCH_DEADLINE.set(time.perf_counter() + SEARCH_TIME_BUDGET)
+    try:
+        for search_depth in range(1, depth + 1):
+            iteration_action, iteration_value = actions[0], -math.inf
+            try:
+                for action in actions:
+                    with _search_successor(game, action) as child:
+                        value = _minimax(child, search_depth - 1, maximising=False)
+                    if value > iteration_value:
+                        iteration_action, iteration_value = action, value
+            except _SearchTimeout:
+                break
+            best_action = iteration_action
+    finally:
+        _SEARCH_DEADLINE.reset(token)
+    return best_action
 
 
 def _minimax(game: PacmanGame, depth: int, maximising: bool) -> float:
     """
     Recursive minimax.
 
-    TODO:
+    Recursion (the starter's complete-step proxy adversary):
       • Base case: return evaluate_state(game) when depth == 0 or game.done.
       • MAX turn: return max score over legal actions (player's turn).
       • MIN turn: return min score over legal actions (ghost-optimal counter).
         (Simplification: treat ghosts as a single adversary choosing the worst
          action for the player.)
     """
-    raise NotImplementedError("Implement _minimax().")
+    _check_search_deadline()
+    if depth <= 0 or game.done:
+        return evaluate_state(game)
+    actions = game.get_legal_actions()
+    if not actions:
+        return evaluate_state(game)
+    best = -math.inf if maximising else math.inf
+    for action in actions:
+        with _search_successor(game, action) as child:
+            value = _minimax(child, depth - 1, not maximising)
+        best = max(best, value) if maximising else min(best, value)
+    return best
 
 
 # ──────────────────────────────────────────────────────────────────────────────

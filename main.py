@@ -112,6 +112,9 @@ def main():
         return
 
     for key in targets:
+        # Each solver gets the same independent seed in individual and all runs.
+        if args.seed is not None:
+            random.seed(args.seed)
         display_name, solver_cls, cfg_key = SOLVER_REGISTRY[key]
         solver_params = config.get(cfg_key, {})
 
@@ -124,20 +127,21 @@ def main():
             best_results[display_name] = (best_state, best_cost)
 
             print(f"   [Done in {runtime:.3f}s]")
-            print(f"   Optimal Departure: {best_state.format_time()} ({best_state.departure_time:.1f}m)")
+            print(f"   Best Departure   : {best_state.format_time()} ({best_state.departure_time:.1f}m)")
             print(f"   Total Travel Time: {best_cost:.2f} minutes")
-            print(f"   Optimal Route    : {' -> '.join(best_state.path)}")
+            print(f"   Best Route       : {' -> '.join(best_state.path)}")
 
             if args.plot_route:
                 out_path = f"route_{key}.png" if args.save_figs else None
-                plot_commute_route(problem, best_state, title=f"{display_name} Best Route", save_path=out_path)
+                plot_commute_route(problem, best_state, title=f"{display_name} Best Route",
+                                   save_path=out_path, show=not args.save_figs)
 
         except NotImplementedError:
             print(f"   [Skipped] {display_name} is not implemented yet in algorithms/.")
 
     if args.plot_metrics and histories:
         out_metrics = "convergence_comparison.png" if args.save_figs else None
-        plot_convergence(histories, save_path=out_metrics)
+        plot_convergence(histories, save_path=out_metrics, show=not args.save_figs)
 
     print("\n" + "=" * 70)
     print(" BENCHMARK SUMMARY")

@@ -1,0 +1,401 @@
+profile,scenario,algo,seed,cost,gap_pct,optimal,runtime_s,evaluations,steps,first_best_step,departure,departure_hhmm,path
+baseline,rush_hour,hc,0,41.77261734682702,0.0,True,0.005425699999250355,367,66,12,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,hc,1,41.77261734682702,0.0,True,0.0036847000010311604,248,45,21,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,hc,2,41.77261734682702,0.0,True,0.004460899999685353,331,59,13,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,hc,3,41.77261734682702,0.0,True,0.004274099999747705,298,54,10,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,hc,4,41.77261734682702,0.0,True,0.00388329999987036,331,60,11,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,hc,5,41.77261734682702,0.0,True,0.0024856999989424367,282,50,33,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,hc,6,41.77261734682702,0.0,True,0.003127699999822653,319,59,9,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,hc,7,41.77261734682702,0.0,True,0.004840400000830414,412,72,25,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,hc,8,41.77261734682702,0.0,True,0.002802900000460795,342,62,25,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,hc,42,41.77261734682702,0.0,True,0.0041103000003204215,317,57,15,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,0,41.77261734682702,0.0,True,0.0482004000004963,1458,1457,578,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,1,41.77261734682702,0.0,True,0.048240699999951175,1458,1457,480,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,2,41.77261734682702,0.0,True,0.04457000000002154,1458,1457,331,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,3,41.77261734682702,0.0,True,0.04735909999908472,1458,1457,846,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,4,41.77261734682702,0.0,True,0.04426699999930861,1458,1457,435,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,5,41.77261734682702,0.0,True,0.047374899999340414,1458,1457,415,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,6,41.77261734682702,0.0,True,0.0492844000000332,1458,1457,524,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,7,41.77261734682702,0.0,True,0.05777649999981804,1458,1457,252,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,8,41.77261734682702,0.0,True,0.0565232000008109,1458,1457,653,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,sa,42,41.77261734682702,0.0,True,0.053871299998718314,1458,1457,831,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,beam,0,41.77261734682702,0.0,True,0.002901199999541859,252,7,5,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,beam,1,41.77261734682702,0.0,True,0.00444210000023304,224,7,1,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,beam,2,43.09830635544938,3.1735837800526503,False,0.0008878000007825904,43,1,0,525.0,08:45,Home -> H1 -> H2 -> Uni
+baseline,rush_hour,beam,3,41.77261734682702,0.0,True,0.003652400000646594,195,5,3,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,beam,4,43.09830635544938,3.1735837800526503,False,0.0015327000000979751,85,2,1,525.0,08:45,Home -> H1 -> H2 -> Uni
+baseline,rush_hour,beam,5,41.77261734682702,0.0,True,0.0030895999989297707,292,8,4,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,beam,6,41.77261734682702,0.0,True,0.0015461000002687797,151,4,2,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,beam,7,41.77261734682702,0.0,True,0.0026520999999775086,235,6,5,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,beam,8,41.77261734682702,0.0,True,0.0020334999990154756,186,5,2,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,beam,42,43.09830635544938,3.1735837800526503,False,0.0003434999998717103,45,1,0,525.0,08:45,Home -> H1 -> H2 -> Uni
+baseline,rush_hour,ga,0,41.77261734682702,0.0,True,0.16845130000001518,6050,120,7,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,ga,1,41.77261734682702,0.0,True,0.1909864999997808,6050,120,6,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,ga,2,41.77261734682702,0.0,True,0.20081029999892053,6050,120,3,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,ga,3,41.77261734682702,0.0,True,0.17892390000088199,6050,120,5,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,ga,4,41.77261734682702,0.0,True,0.21382359999915934,6050,120,3,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,ga,5,41.77261734682702,0.0,True,0.16703570000026957,6050,120,6,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,ga,6,41.77261734682702,0.0,True,0.1833281999988685,6050,120,2,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,ga,7,41.77261734682702,0.0,True,0.1694337999997515,6050,120,4,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,ga,8,41.77261734682702,0.0,True,0.18222419999983686,6050,120,4,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,rush_hour,ga,42,41.77261734682702,0.0,True,0.19799700000112352,6050,120,4,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+baseline,dual_peak_rush_hour,hc,0,31.691504084134408,0.0,True,0.019583700001021498,2135,249,15,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,hc,1,31.691504084134408,0.0,True,0.02964799999972456,3097,359,61,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,hc,2,31.691504084134408,0.0,True,0.025465700000495417,2698,311,27,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,hc,3,31.691504084134408,0.0,True,0.030261399999290006,2816,326,35,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,hc,4,31.691504084134408,0.0,True,0.032195000001593144,3459,395,51,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,hc,5,31.691504084134408,0.0,True,0.016657399999530753,1739,203,63,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,hc,6,31.691504084134408,0.0,True,0.014930100000128732,1071,130,31,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,hc,7,31.691504084134408,0.0,True,0.02085819999956584,1562,183,51,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,hc,8,31.691504084134408,0.0,True,0.029024700001173187,2555,295,33,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,hc,42,31.691504084134408,0.0,True,0.027927499999350403,3143,362,95,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,0,31.691504084134408,0.0,True,0.09576220000053581,1458,1457,408,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,1,31.691504084134408,0.0,True,0.07412880000083533,1458,1457,581,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,2,31.691504084134408,0.0,True,0.0778520000003482,1458,1457,194,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,3,31.691504084134408,0.0,True,0.07205580000118061,1458,1457,332,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,4,31.691504084134408,0.0,True,0.07426520000080927,1458,1457,233,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,5,31.691504084134408,0.0,True,0.09953989999849,1458,1457,545,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,6,31.691504084134408,0.0,True,0.06667759999982081,1458,1457,639,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,7,31.691504084134408,0.0,True,0.08639749999929336,1458,1457,177,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,8,31.691504084134408,0.0,True,0.08622540000033041,1458,1457,238,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,sa,42,31.691504084134408,0.0,True,0.08388960000047518,1458,1457,393,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,0,31.691504084134408,0.0,True,0.001874899999165791,119,2,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,1,31.691504084134408,0.0,True,0.008034599999518832,476,9,7,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,2,31.691504084134408,0.0,True,0.0008105999986582901,62,1,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,3,31.691504084134408,0.0,True,0.004740600001241546,293,6,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,4,31.691504084134408,0.0,True,0.005112999999255408,261,5,2,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,5,31.691504084134408,0.0,True,0.003390699999727076,302,6,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,6,31.691504084134408,0.0,True,0.0011949999989155913,106,2,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,7,31.691504084134408,0.0,True,0.003632199999628938,341,7,6,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,8,31.691504084134408,0.0,True,0.004058399999848916,349,7,2,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,beam,42,31.691504084134408,0.0,True,0.003441800001382944,280,6,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,0,31.691504084134408,0.0,True,0.2719278000004124,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,1,31.691504084134408,0.0,True,0.22927270000036515,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,2,31.691504084134408,0.0,True,0.22878830000081507,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,3,31.691504084134408,0.0,True,0.18755789999886474,6050,120,20,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,4,31.691504084134408,0.0,True,0.1947123999998439,6050,120,10,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,5,31.691504084134408,0.0,True,0.17957050000040908,6050,120,7,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,6,31.691504084134408,0.0,True,0.19315180000012333,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,7,31.691504084134408,0.0,True,0.21049909999965166,6050,120,13,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,8,31.691504084134408,0.0,True,0.18761579999954847,6050,120,11,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,dual_peak_rush_hour,ga,42,31.691504084134408,0.0,True,0.17674259999876085,6050,120,8,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,hc,0,31.01863340914167,0.0,True,0.07562850000067556,6953,983,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,hc,1,31.01863340914167,0.0,True,0.14196919999994861,8494,1199,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,hc,2,31.01863340914167,0.0,True,0.06568789999982982,7121,1007,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,hc,3,31.01863340914167,0.0,True,0.08465669999895908,7735,1091,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,hc,4,31.01863340914167,0.0,True,0.10662820000106876,8414,1191,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,hc,5,31.01863340914167,0.0,True,0.06836290000137524,6293,890,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,hc,6,31.01863340914167,0.0,True,0.11000290000083623,8496,1199,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,hc,7,31.01863340914167,0.0,True,0.08779470000081346,7098,1006,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,hc,8,31.01863340914167,0.0,True,0.11532780000015919,7214,1016,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,hc,42,31.01863340914167,0.0,True,0.0678819000004296,5654,798,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,sa,0,31.01863340914167,0.0,True,0.09809049999967101,1458,1457,404,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,sa,1,31.01863340914167,0.0,True,0.0711206999985734,1458,1457,298,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,sa,2,31.01863340914167,0.0,True,0.08401380000032077,1458,1457,528,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,sa,3,31.01863340914167,0.0,True,0.07133409999914875,1458,1457,325,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,sa,4,31.01863340914167,0.0,True,0.07831420000002254,1458,1457,348,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,sa,5,31.01863340914167,0.0,True,0.07283790000110457,1458,1457,536,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,sa,6,31.01863340914167,0.0,True,0.06883229999948526,1458,1457,603,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,sa,7,31.01863340914167,0.0,True,0.07256489999963378,1458,1457,376,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,sa,8,31.01863340914167,0.0,True,0.08031200000004901,1458,1457,312,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,sa,42,31.01863340914167,0.0,True,0.08003610000014305,1458,1457,206,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,beam,0,31.01863340914167,0.0,True,0.005172199998924043,247,5,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,beam,1,31.01863340914167,0.0,True,0.008788800001639174,403,8,4,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,beam,2,31.01863340914167,0.0,True,0.0035134999998263083,157,3,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,beam,3,31.01863340914167,0.0,True,0.0023223999996844213,247,5,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,beam,4,31.01863340914167,0.0,True,0.004140700000789366,249,5,3,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,beam,5,31.01863340914167,0.0,True,0.0032791000012366567,286,6,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,beam,6,31.01863340914167,0.0,True,0.002118000000336906,192,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,beam,7,31.01863340914167,0.0,True,0.003789300000789808,322,7,5,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,beam,8,31.01863340914167,0.0,True,0.0030131999992590863,257,5,1,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,beam,42,31.01863340914167,0.0,True,0.004823200000828365,271,6,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,ga,0,31.01863340914167,0.0,True,0.20320600000013656,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,ga,1,31.01863340914167,0.0,True,0.19087299999955576,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,ga,2,31.01863340914167,0.0,True,0.22054799999932584,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,ga,3,31.01863340914167,0.0,True,0.2513223999994807,6050,120,14,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,ga,4,31.01863340914167,0.0,True,0.20509530000163068,6050,120,6,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,ga,5,31.01863340914167,0.0,True,0.19509410000136995,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,ga,6,31.01863340914167,0.0,True,0.23637589999998454,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,ga,7,31.01863340914167,0.0,True,0.1998358000000735,6050,120,6,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,cascading_gridlock,ga,8,31.01863340914167,0.0,True,0.2221850000005361,6050,120,11,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,cascading_gridlock,ga,42,31.01863340914167,0.0,True,0.22729640000034124,6050,120,8,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,hc,0,31.007595501452784,0.0,True,0.1101963999990403,10050,1326,46,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,hc,1,31.007595501452784,0.0,True,0.09925769999972545,8198,1099,91,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,hc,2,31.007595501452784,0.0,True,0.10416020000047865,8135,1075,59,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,hc,3,31.007595501452784,0.0,True,0.11607180000100925,10185,1322,66,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,hc,4,31.007595501452784,0.0,True,0.12011919999895326,10423,1370,79,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,hc,5,31.007595501452784,0.0,True,0.12885289999940142,10203,1301,81,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,hc,6,31.007595501452784,0.0,True,0.10155069999927946,9086,1198,44,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,hc,7,31.007595501452784,0.0,True,0.08593970000038098,6280,800,131,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,hc,8,31.007595501452784,0.0,True,0.06641409999974712,5750,807,36,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,hc,42,31.007595501452784,0.0,True,0.051226499999756925,4456,580,114,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,sa,0,31.007595501452784,0.0,True,0.09157409999897936,1458,1457,221,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,sa,1,31.007595501452784,0.0,True,0.08600539999861212,1458,1457,626,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,sa,2,31.007595501452784,0.0,True,0.07245440000042436,1458,1457,316,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,sa,3,31.007595501452784,0.0,True,0.06687270000111312,1458,1457,306,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,sa,4,31.007595501452784,0.0,True,0.07979590000104508,1458,1457,811,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,sa,5,31.007595501452784,0.0,True,0.08007200000065495,1458,1457,569,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,sa,6,31.007595501452784,0.0,True,0.06979979999960051,1458,1457,763,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,sa,7,31.007595501452784,0.0,True,0.08102409999992233,1458,1457,231,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,sa,8,31.007595501452784,0.0,True,0.10523950000060722,1458,1457,288,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,sa,42,31.007595501452784,0.0,True,0.08138040000085311,1458,1457,186,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,beam,0,31.007595501452784,0.0,True,0.0026157000011153286,253,5,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,beam,1,31.007595501452784,0.0,True,0.003090899999733665,284,5,4,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,beam,2,31.007595501452784,0.0,True,0.002547199999753502,159,3,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,beam,3,31.007595501452784,0.0,True,0.0028929000000061933,258,5,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,beam,4,31.007595501452784,0.0,True,0.002735199999733595,224,4,3,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,beam,5,31.007595501452784,0.0,True,0.0036359000005177222,321,6,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,beam,6,31.007595501452784,0.0,True,0.002912599999035592,212,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,beam,7,31.007595501452784,0.0,True,0.006132999998953892,324,7,5,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,beam,8,31.007595501452784,0.0,True,0.0047155999982351204,362,7,1,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,beam,42,31.007595501452784,0.0,True,0.004182399999990594,275,6,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,ga,0,31.007595501452784,0.0,True,0.22666390000085812,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,ga,1,31.007595501452784,0.0,True,0.19412440000087372,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,ga,2,31.007595501452784,0.0,True,0.22076100000049337,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,ga,3,31.007595501452784,0.0,True,0.2181628999987879,6050,120,14,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,ga,4,31.007595501452784,0.0,True,0.25953039999876637,6050,120,6,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,ga,5,31.007595501452784,0.0,True,0.19844039999952656,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,crossover_showcase,ga,6,31.007595501452784,0.0,True,0.2235272999987501,6050,120,7,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,ga,7,31.007595501452784,0.0,True,0.19798989999981131,6050,120,8,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,ga,8,31.007595501452784,0.0,True,0.18830870000056166,6050,120,11,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+baseline,crossover_showcase,ga,42,31.007595501452784,0.0,True,0.2023085999990144,6050,120,7,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+baseline,flat_plateau,hc,0,28.85155203658087,0.0,True,0.00670429999991029,578,113,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,hc,1,28.85155203658087,0.0,True,0.0031553000007988885,293,59,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,hc,2,28.85155203658087,0.0,True,0.004556899999442976,417,87,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,hc,3,28.85155203658087,0.0,True,0.004164399999353918,424,85,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,hc,4,28.85155203658087,0.0,True,0.0067620999998325715,492,103,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,hc,5,28.85155203658087,0.0,True,0.008175000000846921,532,111,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,hc,6,28.85155203658087,0.0,True,0.005179699999644072,359,76,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,hc,7,28.85155203658087,0.0,True,0.005420400000730297,474,100,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,hc,8,28.85155203658087,0.0,True,0.003964699999414734,370,77,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,hc,42,28.85155203658087,0.0,True,0.00593010000011418,355,72,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,0,28.85155203658087,0.0,True,0.04815480000070238,1458,1457,501,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,1,28.85155203658087,0.0,True,0.04776599999968312,1458,1457,477,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,2,28.85155203658087,0.0,True,0.05046140000013111,1458,1457,362,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,3,28.85155203658087,0.0,True,0.06612260000110837,1458,1457,356,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,4,28.85155203658087,0.0,True,0.04782410000007076,1458,1457,450,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,5,28.85155203658087,0.0,True,0.0474223000001075,1458,1457,559,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,6,28.85155203658087,0.0,True,0.04938870000114548,1458,1457,413,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,7,28.85155203658087,0.0,True,0.04003550000015821,1458,1457,232,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,8,28.85155203658087,0.0,True,0.045620799999596784,1458,1457,287,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,sa,42,28.85155203658087,0.0,True,0.05061840000053053,1458,1457,295,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,beam,0,28.85155203658087,0.0,True,0.004374100000859471,210,7,5,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,beam,1,28.85155203658087,0.0,True,0.0018978999996761559,129,4,2,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,beam,2,28.85155203658087,0.0,True,0.0025848999994195765,218,7,5,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,beam,3,28.85155203658087,0.0,True,0.0018736000001808861,152,5,3,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,beam,4,28.85155203658087,0.0,True,0.0022705999999743653,187,6,4,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,beam,5,28.85155203658087,0.0,True,0.0008133999999699881,65,2,1,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,beam,6,28.85155203658087,0.0,True,0.0018588000002637273,149,5,2,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,beam,7,28.85155203658087,0.0,True,0.0016242999990936369,135,4,3,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,beam,8,30.245066951099375,4.8299478404200515,False,0.0010731000002124347,110,3,2,525.0,08:45,Home -> G4 -> G8 -> G9 -> G10 -> Uni
+baseline,flat_plateau,beam,42,28.85155203658087,0.0,True,0.002308400000401889,151,5,3,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,0,28.85155203658087,0.0,True,0.1650102000003244,6050,120,3,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,1,28.85155203658087,0.0,True,0.18617339999946125,6050,120,4,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,2,28.85155203658087,0.0,True,0.1848033000005671,6050,120,3,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,3,28.85155203658087,0.0,True,0.2714770000002318,6050,120,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,4,28.85155203658087,0.0,True,0.18125770000006014,6050,120,2,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,5,28.85155203658087,0.0,True,0.16217150000011316,6050,120,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,6,28.85155203658087,0.0,True,0.18892020000021148,6050,120,4,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,7,28.85155203658087,0.0,True,0.20565990000068268,6050,120,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,8,28.85155203658087,0.0,True,0.21888290000060806,6050,120,4,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+baseline,flat_plateau,ga,42,28.85155203658087,0.0,True,0.2058324999998149,6050,120,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,rush_hour,hc,0,41.77261734682702,0.0,True,0.003023199999006465,367,66,12,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,hc,1,41.77261734682702,0.0,True,0.0019885000001522712,248,45,21,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,hc,2,41.77261734682702,0.0,True,0.002877600001738756,331,59,13,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,hc,3,41.77261734682702,0.0,True,0.0027103000011265976,298,54,10,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,hc,4,41.77261734682702,0.0,True,0.0025795999990805285,331,60,11,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,hc,5,41.77261734682702,0.0,True,0.0027032999987568473,282,50,33,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,hc,6,41.77261734682702,0.0,True,0.0030262999989645323,319,59,9,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,hc,7,41.77261734682702,0.0,True,0.002963400000226102,412,72,25,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,hc,8,41.77261734682702,0.0,True,0.0041258000001107575,342,62,25,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,hc,42,41.77261734682702,0.0,True,0.0040711999990890035,317,57,15,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,sa,0,41.77261734682702,0.0,True,0.024355100000320817,862,861,260,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,sa,1,45.0056892057122,7.739691846555459,False,0.02645250000023225,862,861,27,465.0,07:45,Home -> B1 -> B2 -> Uni
+tuned,rush_hour,sa,2,41.77261734682702,0.0,True,0.028684599999905913,862,861,166,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,sa,3,45.0056892057122,7.739691846555459,False,0.02645450000090932,862,861,17,465.0,07:45,Home -> B1 -> B2 -> Uni
+tuned,rush_hour,sa,4,41.77261734682702,0.0,True,0.02652950000083365,862,861,137,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,sa,5,41.77261734682702,0.0,True,0.029002799999943818,862,861,260,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,sa,6,41.77261734682702,0.0,True,0.028401600000506733,862,861,210,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,sa,7,41.77261734682702,0.0,True,0.0310418999997637,862,861,208,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,sa,8,41.77261734682702,0.0,True,0.02920319999975618,862,861,69,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,sa,42,41.77261734682702,0.0,True,0.02602350000051956,862,861,83,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,0,41.77261734682702,0.0,True,0.002583499999673222,223,3,2,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,1,41.77261734682702,0.0,True,0.003862900000967784,347,5,1,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,2,41.77261734682702,0.0,True,0.0021815000000060536,208,3,1,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,3,41.77261734682702,0.0,True,0.0034082999991369434,332,5,3,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,4,41.77261734682702,0.0,True,0.0028226000013091834,285,4,2,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,5,41.77261734682702,0.0,True,0.0019659999998111743,208,3,2,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,6,41.77261734682702,0.0,True,0.002062100000330247,221,3,1,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,7,41.77261734682702,0.0,True,0.003853599999274593,218,3,1,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,8,41.77261734682702,0.0,True,0.0017518000004201895,223,3,1,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,beam,42,41.77261734682702,0.0,True,0.0020583999994414626,214,3,1,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,0,41.77261734682702,0.0,True,0.16351409999879252,6050,120,7,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,1,41.77261734682702,0.0,True,0.1905722000010428,6050,120,6,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,2,41.77261734682702,0.0,True,0.20073500000034983,6050,120,3,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,3,41.77261734682702,0.0,True,0.20583080000142218,6050,120,5,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,4,41.77261734682702,0.0,True,0.20468549999895913,6050,120,3,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,5,41.77261734682702,0.0,True,0.16947370000161754,6050,120,6,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,6,41.77261734682702,0.0,True,0.18840669999917736,6050,120,2,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,7,41.77261734682702,0.0,True,0.1815681999996741,6050,120,4,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,8,41.77261734682702,0.0,True,0.17486230000031355,6050,120,4,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,rush_hour,ga,42,41.77261734682702,0.0,True,0.1696537999996508,6050,120,4,525.0,08:45,Home -> B1 -> B2 -> H2 -> Uni
+tuned,dual_peak_rush_hour,hc,0,31.691504084134408,0.0,True,0.0040972999995574355,450,55,9,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,hc,1,31.691504084134408,0.0,True,0.006859899998744368,449,56,5,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,hc,2,31.691504084134408,0.0,True,0.0038377999990188982,380,46,8,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,hc,3,31.691504084134408,0.0,True,0.006389600001057261,459,58,9,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,hc,4,31.691504084134408,0.0,True,0.006625699999858625,448,55,13,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,hc,5,31.691504084134408,0.0,True,0.004073000000062166,366,44,30,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,hc,6,31.691504084134408,0.0,True,0.005155700000614161,414,51,11,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,hc,7,31.691504084134408,0.0,True,0.003970600000684499,339,41,7,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,hc,8,31.691504084134408,0.0,True,0.0032453999992867466,340,41,13,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,hc,42,31.691504084134408,0.0,True,0.0039508999998361105,418,50,24,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,0,31.691504084134408,0.0,True,0.045789900001182104,862,861,258,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,1,31.691504084134408,0.0,True,0.053997000000890694,862,861,192,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,2,31.691504084134408,0.0,True,0.03911090000110562,862,861,237,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,3,31.691504084134408,0.0,True,0.040346100000533625,862,861,242,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,4,31.691504084134408,0.0,True,0.04785989999982121,862,861,217,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,5,31.691504084134408,0.0,True,0.05287690000113798,862,861,250,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,6,36.0,13.595113391991191,False,0.05309630000010657,862,861,14,465.0,07:45,Home -> S1 -> T1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,7,31.691504084134408,0.0,True,0.043532199999390286,862,861,193,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,8,31.691504084134408,0.0,True,0.044374299999617506,862,861,115,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,sa,42,31.691504084134408,0.0,True,0.03798050000114017,862,861,111,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,0,31.691504084134408,0.0,True,0.005532699999093893,392,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,1,31.691504084134408,0.0,True,0.004764299999806099,412,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,2,31.691504084134408,0.0,True,0.0023457000006601447,207,2,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,3,31.691504084134408,0.0,True,0.005471100001159357,498,5,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,4,31.691504084134408,0.0,True,0.005167700001038611,415,4,2,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,5,31.691504084134408,0.0,True,0.008249799999248353,687,7,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,6,31.691504084134408,0.0,True,0.00712530000055267,666,7,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,7,31.691504084134408,0.0,True,0.0067156000004615635,470,5,3,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,8,31.691504084134408,0.0,True,0.00889420000021346,779,8,2,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,beam,42,31.691504084134408,0.0,True,0.004162899998846115,366,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,0,31.691504084134408,0.0,True,0.18663290000040433,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,1,31.691504084134408,0.0,True,0.2162719999996625,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,2,31.691504084134408,0.0,True,0.2055328999995254,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,3,31.691504084134408,0.0,True,0.2521006999995734,6050,120,20,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,4,31.691504084134408,0.0,True,0.19948629999998957,6050,120,10,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,5,31.691504084134408,0.0,True,0.17235509999954957,6050,120,7,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,6,31.691504084134408,0.0,True,0.18169029999990016,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,7,31.691504084134408,0.0,True,0.23043680000046152,6050,120,13,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,8,31.691504084134408,0.0,True,0.19328069999937725,6050,120,11,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,dual_peak_rush_hour,ga,42,31.691504084134408,0.0,True,0.20731010000054084,6050,120,8,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,hc,0,31.01863340914167,0.0,True,0.005546000000322238,643,81,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,hc,1,31.01863340914167,0.0,True,0.006312900000921218,732,90,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,hc,2,31.01863340914167,0.0,True,0.011783400001149857,795,105,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,hc,3,31.01863340914167,0.0,True,0.015226900000925525,659,85,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,hc,4,31.01863340914167,0.0,True,0.01262489999862737,852,109,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,hc,5,31.01863340914167,0.0,True,0.008811300000161282,821,104,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,hc,6,31.01863340914167,0.0,True,0.0068966999988333555,653,82,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,hc,7,31.01863340914167,0.0,True,0.016344499999831896,881,113,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,hc,8,31.01863340914167,0.0,True,0.010353200001190999,835,104,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,hc,42,31.01863340914167,0.0,True,0.0072975000002770685,696,87,12,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,sa,0,31.01863340914167,0.0,True,0.049017599998478545,862,861,138,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,sa,1,31.01863340914167,0.0,True,0.046491499999319785,862,861,187,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,sa,2,31.01863340914167,0.0,True,0.05274680000002263,862,861,151,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,sa,3,31.01863340914167,0.0,True,0.04782750000049418,862,861,175,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,sa,4,31.01863340914167,0.0,True,0.0409018999998807,862,861,129,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,sa,5,31.01863340914167,0.0,True,0.039029600000503706,862,861,196,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,sa,6,31.01863340914167,0.0,True,0.06027150000045367,862,861,218,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,sa,7,31.01863340914167,0.0,True,0.05585069999870029,862,861,132,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,sa,8,31.01863340914167,0.0,True,0.03814719999900262,862,861,111,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,sa,42,31.01863340914167,0.0,True,0.037728599998445134,862,861,151,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,beam,0,31.01863340914167,0.0,True,0.0043256000008113915,361,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,beam,1,31.01863340914167,0.0,True,0.005389399999330635,370,4,0,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,beam,2,31.01863340914167,0.0,True,0.005162400000699563,266,3,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,beam,3,31.01863340914167,0.0,True,0.004997399999410845,370,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,beam,4,31.01863340914167,0.0,True,0.004536100001132581,374,4,2,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,beam,5,31.01863340914167,0.0,True,0.005259700001261081,437,5,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,beam,6,31.01863340914167,0.0,True,0.0050343999992037425,351,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,beam,7,31.01863340914167,0.0,True,0.007026500001302338,416,5,3,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,beam,8,31.01863340914167,0.0,True,0.008648299999549636,440,5,1,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,beam,42,31.01863340914167,0.0,True,0.004777000000103726,344,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,ga,0,31.01863340914167,0.0,True,0.20109749999937776,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,ga,1,31.01863340914167,0.0,True,0.21089839999876858,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,ga,2,31.01863340914167,0.0,True,0.19921160000012605,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,ga,3,31.01863340914167,0.0,True,0.22302320000017062,6050,120,14,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,ga,4,31.01863340914167,0.0,True,0.20696080000016082,6050,120,6,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,ga,5,31.01863340914167,0.0,True,0.19645929999933287,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,ga,6,31.01863340914167,0.0,True,0.20990320000055362,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,ga,7,31.01863340914167,0.0,True,0.18682450000051176,6050,120,6,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,cascading_gridlock,ga,8,31.01863340914167,0.0,True,0.2006768999999622,6050,120,11,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,cascading_gridlock,ga,42,31.01863340914167,0.0,True,0.21410330000071554,6050,120,8,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,hc,0,31.007595501452784,0.0,True,0.0029446000007737894,308,38,2,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,hc,1,31.007595501452784,0.0,True,0.00394129999949655,390,50,6,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,hc,2,31.007595501452784,0.0,True,0.0025948999991669552,293,36,6,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,hc,3,31.007595501452784,0.0,True,0.0026115000000572763,264,30,14,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,hc,4,31.007595501452784,0.0,True,0.002948100000139675,285,34,11,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,hc,5,31.007595501452784,0.0,True,0.004206200001135585,258,32,28,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,hc,6,31.007595501452784,0.0,True,0.006454500000472763,296,35,3,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,hc,7,31.007595501452784,0.0,True,0.008000400001037633,395,51,29,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,hc,8,31.007595501452784,0.0,True,0.00525019999986398,241,28,15,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,hc,42,31.007595501452784,0.0,True,0.011440700000093784,516,71,39,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,sa,0,31.007595501452784,0.0,True,0.040534499999921536,862,861,148,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,sa,1,31.007595501452784,0.0,True,0.03980859999865061,862,861,429,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,sa,2,31.007595501452784,0.0,True,0.03926640000099724,862,861,213,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,sa,3,31.007595501452784,0.0,True,0.03846750000047905,862,861,258,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,sa,4,31.007595501452784,0.0,True,0.040258999999423395,862,861,215,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,sa,5,31.007595501452784,0.0,True,0.04090800000085437,862,861,327,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,sa,6,31.007595501452784,0.0,True,0.04146330000003218,862,861,661,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,sa,7,31.007595501452784,0.0,True,0.045182299998487,862,861,131,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,sa,8,31.007595501452784,0.0,True,0.0502109000008204,862,861,101,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,sa,42,31.007595501452784,0.0,True,0.040517999999792664,862,861,125,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,beam,0,31.007595501452784,0.0,True,0.004274199998690165,379,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,beam,1,31.007595501452784,0.0,True,0.010823100001289276,465,5,0,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,beam,2,31.007595501452784,0.0,True,0.004407099999298225,191,2,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,beam,3,31.007595501452784,0.0,True,0.008537400000932394,389,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,beam,4,31.007595501452784,0.0,True,0.004197300000669202,324,3,2,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,beam,5,31.007595501452784,0.0,True,0.009906400000545545,607,7,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,beam,6,31.007595501452784,0.0,True,0.003913900000043213,366,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,beam,7,31.007595501452784,0.0,True,0.007287100001121871,425,5,3,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,beam,8,31.007595501452784,0.0,True,0.011653999999907683,459,5,1,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,beam,42,31.007595501452784,0.0,True,0.009277699999074684,343,4,1,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,ga,0,31.007595501452784,0.0,True,0.18007440000110364,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,ga,1,31.007595501452784,0.0,True,0.21219740000015008,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,ga,2,31.007595501452784,0.0,True,0.20654730000023847,6050,120,0,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,ga,3,31.007595501452784,0.0,True,0.22211890000107815,6050,120,14,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,ga,4,31.007595501452784,0.0,True,0.1915276999989146,6050,120,6,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,ga,5,31.007595501452784,0.0,True,0.23845389999951294,6050,120,5,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,crossover_showcase,ga,6,31.007595501452784,0.0,True,0.17680950000067241,6050,120,7,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,ga,7,31.007595501452784,0.0,True,0.20569530000102532,6050,120,8,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,ga,8,31.007595501452784,0.0,True,0.17722880000110308,6050,120,11,525.0,08:45,Home -> C1 -> C2 -> T2 -> Uni
+tuned,crossover_showcase,ga,42,31.007595501452784,0.0,True,0.2473537000005308,6050,120,7,525.0,08:45,Home -> C1 -> C2 -> B2 -> Uni
+tuned,flat_plateau,hc,0,28.85155203658087,0.0,True,0.01118289999976696,578,113,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,hc,1,28.85155203658087,0.0,True,0.007888600001024315,293,59,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,hc,2,28.85155203658087,0.0,True,0.010818400000061956,417,87,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,hc,3,28.85155203658087,0.0,True,0.008119399999486632,424,85,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,hc,4,28.85155203658087,0.0,True,0.011035999999876367,492,103,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,hc,5,28.85155203658087,0.0,True,0.008232099999077036,532,111,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,hc,6,28.85155203658087,0.0,True,0.004440400000021327,359,76,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,hc,7,28.85155203658087,0.0,True,0.0049699000010150485,474,100,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,hc,8,28.85155203658087,0.0,True,0.004464400000870228,370,77,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,hc,42,28.85155203658087,0.0,True,0.004115200001251651,355,72,13,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,0,28.85155203658087,0.0,True,0.02714659999946889,862,861,108,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,1,28.85155203658087,0.0,True,0.03236690000085218,862,861,123,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,2,28.85155203658087,0.0,True,0.044292200000199955,862,861,194,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,3,28.85155203658087,0.0,True,0.04341759999988426,862,861,90,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,4,28.85155203658087,0.0,True,0.03581230000054347,862,861,117,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,5,28.85155203658087,0.0,True,0.033332199998767464,862,861,54,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,6,28.85155203658087,0.0,True,0.03026999999929103,862,861,121,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,7,28.85155203658087,0.0,True,0.032959000000118976,862,861,118,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,8,28.85155203658087,0.0,True,0.0303764999989653,862,861,131,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,sa,42,28.85155203658087,0.0,True,0.028630799999518786,862,861,93,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,beam,0,30.245066951099375,4.8299478404200515,False,0.0009737999989738455,80,1,0,525.0,08:45,Home -> G4 -> G8 -> G9 -> G10 -> Uni
+tuned,flat_plateau,beam,1,28.85155203658087,0.0,True,0.003946999999243417,271,5,2,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,beam,2,30.245066951099375,4.8299478404200515,False,0.0009127999983320478,74,1,0,525.0,08:45,Home -> G4 -> G8 -> G9 -> G10 -> Uni
+tuned,flat_plateau,beam,3,28.85155203658087,0.0,True,0.0021858999989490258,179,3,2,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,beam,4,28.85155203658087,0.0,True,0.005038299999796436,328,6,2,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,beam,5,28.85155203658087,0.0,True,0.0063123999989329604,258,5,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,beam,6,28.85155203658087,0.0,True,0.00281149999864283,223,4,2,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,beam,7,28.85155203658087,0.0,True,0.004127199999857112,315,6,1,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,beam,8,28.85155203658087,0.0,True,0.002952900000309455,245,4,3,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,beam,42,28.85155203658087,0.0,True,0.0009687999991001561,83,1,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,0,28.85155203658087,0.0,True,0.2061048000014125,6050,120,3,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,1,28.85155203658087,0.0,True,0.23104400000011083,6050,120,4,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,2,28.85155203658087,0.0,True,0.1977351000005001,6050,120,3,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,3,28.85155203658087,0.0,True,0.20367330000044603,6050,120,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,4,28.85155203658087,0.0,True,0.21131550000063726,6050,120,2,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,5,28.85155203658087,0.0,True,0.1903585000000021,6050,120,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,6,28.85155203658087,0.0,True,0.1714910000009695,6050,120,4,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,7,28.85155203658087,0.0,True,0.1876412999990862,6050,120,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,8,28.85155203658087,0.0,True,0.20409440000003087,6050,120,4,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni
+tuned,flat_plateau,ga,42,28.85155203658087,0.0,True,0.19884610000008252,6050,120,0,525.0,08:45,Home -> G1 -> G2 -> G3 -> G7 -> Uni

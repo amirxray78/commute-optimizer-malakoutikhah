@@ -1,0 +1,73 @@
+{
+  "rush_hour": {
+    "cost": 41.77261734682702,
+    "departure": 525.0,
+    "path": [
+      "Home",
+      "B1",
+      "B2",
+      "H2",
+      "Uni"
+    ],
+    "paths": 12,
+    "time_slots": 13,
+    "states": 156
+  },
+  "dual_peak_rush_hour": {
+    "cost": 31.691504084134408,
+    "departure": 525.0,
+    "path": [
+      "Home",
+      "C1",
+      "C2",
+      "T2",
+      "Uni"
+    ],
+    "paths": 33,
+    "time_slots": 13,
+    "states": 429
+  },
+  "cascading_gridlock": {
+    "cost": 31.01863340914167,
+    "departure": 525.0,
+    "path": [
+      "Home",
+      "C1",
+      "C2",
+      "T2",
+      "Uni"
+    ],
+    "paths": 33,
+    "time_slots": 13,
+    "states": 429
+  },
+  "crossover_showcase": {
+    "cost": 31.007595501452784,
+    "departure": 525.0,
+    "path": [
+      "Home",
+      "C1",
+      "C2",
+      "T2",
+      "Uni"
+    ],
+    "paths": 33,
+    "time_slots": 13,
+    "states": 429
+  },
+  "flat_plateau": {
+    "cost": 28.85155203658087,
+    "departure": 525.0,
+    "path": [
+      "Home",
+      "G1",
+      "G2",
+      "G3",
+      "G7",
+      "Uni"
+    ],
+    "paths": 10,
+    "time_slots": 13,
+    "states": 130
+  }
+}

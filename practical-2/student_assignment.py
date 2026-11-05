@@ -179,6 +179,9 @@ ALPHABETA_DEPTH    = 6     # pruning makes much deeper search affordable
 MCTS_ITERATIONS    = 500   # selection → backprop cycles per move
 MCTS_ROLLOUT_DEPTH = 20    # steps per rollout (simulation phase)
 MCTS_C             = 1.41  # UCB1 exploration constant (C in Q + C*sqrt(ln(N)/n))
+MCTS_ROLLOUT_POLICY  = 'guided'  # 'guided' (see _rollout_action) or 'random'
+MCTS_ROLLOUT_EPSILON = 0.2       # guided policy: chance of a random useful action
+MCTS_REWARD_SCALE    = 250.0     # tanh scale mapping evaluate_state deltas to [0, 1]
 
 EVALUATION_WEIGHTS = {
     'death': -1_000_000.0,
@@ -558,10 +561,10 @@ def ucb1_score(q: float, n: int, N: int, c: float) -> float:
       • n == 0 means the node is unvisited — return +infinity so it is always
         chosen before any visited sibling (forces every child to be tried once).
       • Called by MCTSNode.best_child() for every child in the selection step.
-
-    TODO: replace the NotImplementedError with your implementation.
     """
-    raise NotImplementedError("Implement ucb1_score().")
+    if n <= 0:
+        return math.inf
+    return q + c * math.sqrt(math.log(max(N, 1)) / n)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -584,8 +587,6 @@ class MCTSNode:
         visits          — how many times this node has been visited
         total_value     — cumulative rollout value (for mean calculation)
         untried_actions — actions not yet expanded into children
-
-    TODO: complete is_fully_expanded() and best_child().
     """
 
     def __init__(self, state_snapshot: GameState,
@@ -598,22 +599,27 @@ class MCTSNode:
         self.children:       List['MCTSNode'] = []
         self.visits:         int   = 0
         self.total_value:    float = 0.0
-        # TODO: populate untried_actions from legal moves at this state
-        self.untried_actions: List[Action] = untried_actions or []
+        # The caller passes the legal moves at this state (see _mcts_actions).
+        # A terminal state has no moves to expand.
+        terminal = getattr(state_snapshot, 'done', False)
+        self.untried_actions: List[Action] = [] if terminal else list(untried_actions or [])
 
     def is_fully_expanded(self) -> bool:
         """Return True when every legal action has a child node."""
-        # TODO: implement
-        raise NotImplementedError("Implement MCTSNode.is_fully_expanded().")
+        return not self.untried_actions
 
     def best_child(self, c: float = 1.41) -> 'MCTSNode':
         """
         Return child with highest UCB1 score.
 
-        TODO: call ucb1_score(child.mean_value(), child.visits, self.visits, c)
-        for each child and return the one with the maximum score.
+        Calls ucb1_score(child.mean_value(), child.visits, self.visits, c) for
+        each child and returns the one with the highest score (first on ties).
         """
-        raise NotImplementedError("Implement MCTSNode.best_child().")
+        if not self.children:
+            raise ValueError("best_child() needs at least one expanded child.")
+        return max(self.children,
+                   key=lambda child: ucb1_score(child.mean_value(), child.visits,
+                                                self.visits, c))
 
     def mean_value(self) -> float:
         return self.total_value / self.visits if self.visits > 0 else 0.0
@@ -646,18 +652,60 @@ def mcts_agent(obs: Dict, game: PacmanGame,
     Returns:
         Action of the root child with highest visit count N.
 
-    TODO:
-      1. Build root MCTSNode from game.get_state() and game.get_legal_actions().
-      2. Clone the game once for simulation (sim = game.clone()).
-      3. For each iteration run steps 1-3 above using the helper functions.
-      4. Return the action of root.children with max visits.
+    Implementation notes:
+      • The tree is built only from simulated clones. The global RNG is
+        restored at the end, so the live game and its random stream are
+        unchanged and repeated calls return the same action.
+      • A node stores the one ghost transition sampled when it was expanded
+        (a determinised tree). Rollouts below it are sampled again on every
+        visit.
+      • evaluate_state() spans ±1e6, which would overwhelm the UCB1
+        exploration term. Every rollout value v is therefore mapped to
+        [0, 1] relative to the root value v0:
+            0.5 + 0.5 * tanh((v - v0) / MCTS_REWARD_SCALE)
+        Death maps to about 0, a kill or a clear to about 1.
+      • The loop also stops at the shared per-move time budget, so a large
+        `iterations` value cannot cause a timeout.
+      • Shooting at an empty tile is never expanded. It is the same as STAY
+        except that one ammo is lost.
     """
-    raise NotImplementedError("Implement mcts_agent().")
+    actions = game.get_legal_actions()
+    if game.done or not actions:
+        return Action.STAY
+    rng_state = random.getstate()
+    deadline = time.perf_counter() + SEARCH_TIME_BUDGET
+    try:
+        root_value = evaluate_state(game)
+        root = MCTSNode(game.get_state(), untried_actions=_mcts_actions(game))
+        sim = game.clone()
+        for _ in range(iterations):
+            if time.perf_counter() >= deadline:
+                break
+            node = _mcts_select(root, sim, c)
+            child = _mcts_expand(node, sim)
+            value = _mcts_simulate(sim, rollout_depth)
+            reward = 0.5 + 0.5 * math.tanh((value - root_value) / MCTS_REWARD_SCALE)
+            _mcts_backprop(child, reward)
+    finally:
+        random.setstate(rng_state)
+    if not root.children:
+        return root.untried_actions[0] if root.untried_actions else actions[0]
+    best = max(root.children, key=lambda ch: (ch.visits, ch.mean_value()))
+    return best.action_taken
 
 
 # ── MCTS helper functions (implement each one) ────────────────────────────────
 
-def _mcts_select(root: MCTSNode, game: PacmanGame) -> MCTSNode:
+def _mcts_actions(game: PacmanGame) -> List[Action]:
+    """Legal actions worth expanding: no shots at empty tiles, hits first."""
+    player = game.player
+    targets = {(g.x - player.x, g.y - player.y) for g in game.ghosts if g.alive}
+    actions = [a for a in game.get_legal_actions()
+               if a not in _SHOOT_DELTAS or _SHOOT_DELTAS[a] in targets]
+    return _order_actions(game, actions, maximising=True)
+
+
+def _mcts_select(root: MCTSNode, game: PacmanGame, c: float = MCTS_C) -> MCTSNode:
     """
     Slide 43, step 1: "recursively apply UCB to choose a path down to a
     leaf (not fully expanded) node n".
@@ -666,11 +714,16 @@ def _mcts_select(root: MCTSNode, game: PacmanGame) -> MCTSNode:
     use best_child() (UCB1) to descend one level. Stop when you reach a node
     that still has untried actions (not fully expanded) or the game is over.
 
-    Remember to restore game state at each node via game.set_state().
-
-    TODO: implement the selection loop.
+    Every node stores a full snapshot, so the game is restored only once,
+    at the selected node. This gives the same result as restoring at every
+    level.
     """
-    raise NotImplementedError("Implement _mcts_select().")
+    node = root
+    while (node.is_fully_expanded() and node.children
+           and not node.state_snapshot.done):
+        node = node.best_child(c)
+    game.set_state(node.state_snapshot)
+    return node
 
 
 def _mcts_expand(node: MCTSNode, game: PacmanGame) -> MCTSNode:
@@ -679,23 +732,67 @@ def _mcts_expand(node: MCTSNode, game: PacmanGame) -> MCTSNode:
 
     Pop one action from node.untried_actions, apply it to the game,
     create a child MCTSNode for the resulting state, append it to
-    node.children, and return it.
-
-    TODO: implement expansion.
+    node.children, and return it. Terminal nodes return themselves.
+    `game` must already be at node's state (see _mcts_select).
     """
-    raise NotImplementedError("Implement _mcts_expand().")
+    if not node.untried_actions or game.done:
+        return node
+    action = node.untried_actions.pop(0)
+    game.step(action)
+    child = MCTSNode(game.get_state(), parent=node, action_taken=action,
+                     untried_actions=_mcts_actions(game))
+    node.children.append(child)
+    return child
+
+
+def _rollout_action(game: PacmanGame) -> Action:
+    """Default rollout policy (MCTS_ROLLOUT_POLICY = 'guided').
+
+    With probability MCTS_ROLLOUT_EPSILON it picks a uniformly random useful
+    action. Otherwise it plays like a cautious player:
+      1. shoot an adjacent ghost when it has ammo;
+      2. without ammo, pick a move or STAY that does not end next to a ghost;
+      3. otherwise pick a random move, or STAY.
+    A purely random rollout often stays next to ghosts or wastes ammo, which
+    makes rollout values mostly noise.
+    """
+    useful = _mcts_actions(game)
+    if random.random() < MCTS_ROLLOUT_EPSILON:
+        return random.choice(useful)
+    p = game.player
+    shots = [a for a in useful if a in _SHOOT_DELTAS]
+    if shots:
+        return shots[0]
+    ghosts = [(g.x, g.y) for g in game.ghosts if g.alive]
+    steps = [a for a in useful if a not in _SHOOT_DELTAS]
+    if p.ammo == 0 and ghosts:
+        def safe(action: Action) -> bool:
+            dx, dy = _MOVE_DELTAS.get(action, (0, 0))
+            x, y = p.x + dx, p.y + dy
+            return all(abs(gx - x) + abs(gy - y) > 1 for gx, gy in ghosts)
+        safe_steps = [a for a in steps if safe(a)]
+        steps = safe_steps or steps
+    return random.choice(steps)
 
 
 def _mcts_simulate(game: PacmanGame, depth: int) -> float:
     """
     Slide 43, step 2b: "run a rollout from c".
 
-    Play random actions for up to `depth` steps (stop early if game.done).
-    Return evaluate_state(game) as the rollout value.
-
-    TODO: implement the rollout.
+    Play rollout actions for up to `depth` steps (stop early if game.done).
+    Return evaluate_state(game) as the rollout value. The rollout policy is
+    chosen by MCTS_ROLLOUT_POLICY: 'random' (uniform over legal actions) or
+    'guided' (see _rollout_action).
     """
-    raise NotImplementedError("Implement _mcts_simulate().")
+    for _ in range(depth):
+        if game.done:
+            break
+        if MCTS_ROLLOUT_POLICY == 'random':
+            action = random.choice(game.get_legal_actions())
+        else:
+            action = _rollout_action(game)
+        game.step(action)
+    return evaluate_state(game)
 
 
 def _mcts_backprop(node: MCTSNode, value: float):
@@ -704,10 +801,11 @@ def _mcts_backprop(node: MCTSNode, value: float):
 
     Walk from node up to root (via node.parent), incrementing visits by 1
     and adding value to total_value at every ancestor including node itself.
-
-    TODO: implement backpropagation.
     """
-    raise NotImplementedError("Implement _mcts_backprop().")
+    while node is not None:
+        node.visits += 1
+        node.total_value += value
+        node = node.parent
 
 
 # ──────────────────────────────────────────────────────────────────────────────

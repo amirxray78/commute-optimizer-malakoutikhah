@@ -25,6 +25,7 @@
     "generations": 120,
     "crossover_rate": 0.85,
     "mutation_rate": 0.25,
-    "elitism": 3
+    "elitism": 3,
+    "tournament_size": 3
   }
 }

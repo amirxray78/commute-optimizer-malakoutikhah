@@ -98,6 +98,7 @@ Reactive defence:
 ──────────────────────────────────────────────────────────────────────────────
 """
 
+from collections import deque
 import math
 import multiprocessing as mp
 import random
@@ -160,9 +161,25 @@ MCTS_ITERATIONS    = 500   # selection → backprop cycles per move
 MCTS_ROLLOUT_DEPTH = 20    # steps per rollout (simulation phase)
 MCTS_C             = 1.41  # UCB1 exploration constant (C in Q + C*sqrt(ln(N)/n))
 
+EVALUATION_WEIGHTS = {
+    'death': -1_000_000.0,
+    'clear': 1_000_000.0,
+    'kill': 1000.0,
+    'alive': 100.0,
+    'ammo': 15.0,
+    'tile': 0.5,
+    'step': 0.05,
+    'ammo_progress': 3.0,
+    'exit': 2.0,
+    'reachable_tile': 0.2,
+    'threat': 40.0,
+    'shootable': 15.0,
+    'survived_limit': 200.0,
+}
+
 
 # ──────────────────────────────────────────────────────────────────────────────
-# TODO 1 — Scoring / evaluation function
+# Scoring / evaluation function
 # ──────────────────────────────────────────────────────────────────────────────
 
 def evaluate_state(game: PacmanGame) -> float:
@@ -191,40 +208,61 @@ def evaluate_state(game: PacmanGame) -> float:
     Returns:
         float score.
 
-    TODO: replace the NotImplementedError with your implementation.
+    Uses wall-aware distances, behavior-weighted danger, ammo, and mobility.
+    The game state and random-number generator are never modified.
     """
-    # ── placeholder ───────────────────────────────────────────────────────────
-    raise NotImplementedError(
-        "Implement evaluate_state(). "
-        "This function is used by all four agents."
-    )
+    p = game.player
+    weights = EVALUATION_WEIGHTS
+    alive_ghosts = [ghost for ghost in game.ghosts if ghost.alive]
+    kills = sum(not ghost.alive for ghost in game.ghosts)
+    score = (weights['kill'] * kills + weights['tile'] * p.tiles_traveled
+             + weights['step'] * game.step_count)
+    # Death takes priority even if the final ghost was killed in the same state.
+    if not p.alive:
+        return weights['death'] + score
+    if not alive_ghosts:
+        return weights['clear'] + score
 
-    # ── example skeleton (remove the raise above to activate) ─────────────────
-    # p = game.player
-    # if not p.alive:
-    #     return -1000.0
-    #
-    # alive_ghosts = [g for g in game.ghosts if g.alive]
-    # if not alive_ghosts:
-    #     return 1000.0
-    #
-    # # ── convenient pre-extracted values ───────────────────────────────────────
-    # ghost_positions   = [(g.x, g.y) for g in alive_ghosts]   # list of (x, y)
-    # walls             = game.walls                             # set of (x, y)
-    # ammo              = p.ammo                                 # shots remaining
-    # tiles_until_ammo  = (game.config.tiles_per_ammo
-    #                      - p.tiles_traveled % game.config.tiles_per_ammo)
-    # # tiles_until_ammo == game.config.tiles_per_ammo means ammo just refreshed
-    # # ──────────────────────────────────────────────────────────────────────────
-    #
-    # nearest_dist = min(abs(gx - p.x) + abs(gy - p.y) for gx, gy in ghost_positions)
-    #
-    # score = 0.0
-    # score += ???   # reward distance to nearest ghost
-    # score += ???   # reward fewer alive ghosts
-    # score += ???   # reward ammo / proximity to next ammo pickup
-    # score += ???   # survival bonus
-    # return score
+    score += weights['alive'] + weights['ammo'] * p.ammo
+    progress = (p.tiles_traveled % game.config.tiles_per_ammo) / game.config.tiles_per_ammo
+    score += weights['ammo_progress'] * progress
+
+    # One BFS serves both ghost-distance and mobility features. Ghosts are not
+    # walls: they move, and an armed player can defeat one on collision.
+    distances = {(p.x, p.y): 0}
+    queue = deque([(p.x, p.y)])
+    while queue:
+        x, y = queue.popleft()
+        for nx, ny in ((x, y - 1), (x, y + 1), (x - 1, y), (x + 1, y)):
+            if (0 <= nx < game.config.grid_width and 0 <= ny < game.config.grid_height
+                    and (nx, ny) not in game.walls and (nx, ny) not in distances):
+                distances[(nx, ny)] = distances[(x, y)] + 1
+                queue.append((nx, ny))
+    score += weights['exit'] * sum(distance == 1 for distance in distances.values())
+    score += weights['reachable_tile'] * min(len(distances), 20)
+
+    behavior_weights = {
+        GhostBehavior.RANDOM: 1.0,
+        GhostBehavior.FOLLOW: 1.25,
+        GhostBehavior.LOOKAHEAD: 1.5,
+        GhostBehavior.DFS: 1.25,
+    }
+    for ghost in alive_ghosts:
+        danger = behavior_weights[ghost.behavior]
+        distance = distances.get((ghost.x, ghost.y))
+        if distance is not None:
+            # Ammo permits reactive defence, but is finite: keep some danger.
+            defence_factor = 0.35 if p.ammo > 0 else 1.0
+            score -= weights['threat'] * danger * defence_factor / (distance + 1) ** 2
+        dx, dy = abs(ghost.x - p.x), abs(ghost.y - p.y)
+        shootable = (max(dx, dy) == 1
+                     and (game.config.diagonal_shooting or dx == 0 or dy == 0))
+        if p.ammo > 0 and shootable:
+            score += weights['shootable'] * danger
+
+    if game.done:
+        score += weights['survived_limit']
+    return float(score)
 
 
 # ──────────────────────────────────────────────────────────────────────────────

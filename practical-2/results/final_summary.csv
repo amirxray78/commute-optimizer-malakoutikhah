@@ -1,4 +1,0 @@
-agent,params,episodes,avg_kills,avg_cleared,avg_survived,avg_steps,avg_tiles,avg_mean_move_s,avg_search_nodes,max_move_s
-minimax,depth=3,30,2.6,0.2,0.3333,44.3,32.6333,0.115,26540.5333,0.5412
-alphabeta,depth=4,30,2.5333,0.1667,0.3667,46.3667,29.9,0.0986,14594.3,0.6097
-mcts,iterations=500 rollout_depth=5 c=1.41 policy=guided,30,4.8333,0.9333,0.9333,94.7667,89.3333,0.1905,0.0,1.3997

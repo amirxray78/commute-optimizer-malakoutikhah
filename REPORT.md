@@ -1,70 +1,70 @@
-# گزارش بهینه‌سازی سفر شهری
+# Urban Commute Optimization Report
 
-## پیاده‌سازی
+## Implementation
 
-همسایه‌ها با تغییر یک گام ساعت یا جایگزینی بخشی از مسیر ساخته می‌شوند. برای جایگزینی از BFS تا یکی از گره‌های بعدی استفاده کردم؛ بخش قبلی مسدود می‌شود و اتصال و نبود گره تکراری دوباره بررسی می‌شود.
+Neighbors change departure by one time slot or replace a route segment. I used BFS to reconnect to a later waypoint while blocking the retained prefix. Connectivity and the absence of repeated nodes are checked afterward.
 
-HC حرکت افقی محدود و شروع مجدد دارد؛ SA از متروپولیس و کاهش نمایی دما استفاده می‌کند. Beam از مجموعهٔ مشترک همسایه‌ها انتخاب می‌کند. در GA انتخاب Tournament، برازندگی `1/(1+cost)`، ترکیب، جهش و حفظ نخبگان پیاده شد. امضای توابع و موتور شبیه‌سازی تغییر نکرد.
+HC supports limited sideways moves and random restarts. SA uses Metropolis acceptance and exponential cooling. Beam selects from a shared successor pool. GA uses tournament selection, fitness `1/(1+cost)`, crossover, mutation, and elitism. Function signatures and the simulation engine were kept unchanged.
 
-## نتایج
+## Results
 
-۵۷۵ اجرای تنظیم و ۴۰۰ اجرای ارزیابی روی پنج سناریو، با seedهای جدا انجام شد. جدول مربوط به پیش‌فرض‌ها و ۱۰ اجرای `rush_hour` است؛ زمان‌ها میانگین‌اند.
+The experiments included 575 tuning runs and 400 evaluation runs across five scenarios, using separate seeds. The table shows default settings over ten `rush_hour` runs. Runtime and attainment steps are averages.
 
-| روش | بهترین / میانگین سفر (دقیقه) | حرکتِ بهترین جواب | اجرا (ثانیه) | گام رسیدن به جواب نهایی |
+| Method | Best / mean travel (min) | Best departure | Runtime (s) | Final-best attainment step |
 | --- | ---: | --- | ---: | ---: |
 | HC | 41.773 / 41.773 | 08:45 | 0.00391 | 17.4 |
 | SA | 41.773 / 41.773 | 08:45 | 0.04975 | 534.5 |
 | Beam | 41.773 / 42.170 | 08:45 | 0.00231 | 2.3 |
 | GA | 41.773 / 41.773 | 08:45 | 0.18530 | 4.4 |
 
-مسیر بهترین جواب هر چهار روش: `Home → B1 → B2 → H2 → Uni`.
+All four methods found this best route: `Home -> B1 -> B2 -> H2 -> Uni`.
 
-«گام رسیدن» اولین مشاهدهٔ جواب نهایی است، نه اثبات همگرایی؛ واحد گام روش‌ها متفاوت است. [نتایج پنج سناریو](results/summary.csv) ذخیره شده‌اند. جواب دقیق فقط برای ارزیابی نقشه‌های کوچک محاسبه شد و وارد الگوریتم‌ها نشد.
+Attainment means the first observation of the final best result, not proven convergence. Step units differ between methods. [Full results](results/summary.csv) cover all five scenarios. Exact small-map solutions were used only for evaluation, never supplied to the solvers.
 
-## نمودار و تنظیم پارامترها
+## Convergence and Parameters
 
-![نمودار همگرایی](results/convergence_comparison.png)
+![Convergence comparison](results/convergence_comparison.png)
 
-نمودار برای تنظیمات منتخب و seed برابر ۴۲ است. [نمودار برحسب گام](results/convergence_steps.png) هم موجود است. HC افت حریصانه و توقف روی سطح هم‌هزینه دارد. SA با پذیرش حرکت بدتر از درهٔ محلی عبور می‌کند؛ [نوسان مسیر جاری](results/annealing_trajectory.png) از منحنی بهترین جواب جداست. Beam زودتر متوقف می‌شود و GA بهبود نسل‌ها را حفظ می‌کند.
+The figure uses selected settings and seed 42. [Step-based curves](results/convergence_steps.png) are also available. HC makes greedy improvements and can stall on plateaus. SA can escape local minima by accepting worse moves; its [current-cost fluctuations](results/annealing_trajectory.png) differ from its best-so-far curve. Beam stops earlier, while GA retains improvements across generations.
 
-در ارزیابی، دمای اولیهٔ ۱ برای SA سریع‌تر بود، ولی موفقیت از ۱۰۰٪ به ۹۴٪ افت کرد. عرض ۱۶ برای Beam موفقیت کلی را از ۹۲٪ به ۹۶٪ رساند، اما روی سناریوی مسطح ضعیف‌تر شد. GA با همان پیش‌فرض انتخاب شد؛ تنظیمات اصلی را حفظ کردم.
+On evaluation seeds, SA with initial temperature 1 was faster, but success fell from 100% to 94%. Beam width 16 raised overall success from 92% to 96%, but performed worse on the plateau scenario. GA retained its baseline settings. I kept the original defaults.
 
-## پاسخ پرسش‌ها
+## Analytical Questions
 
-### ۱. گرادیان نزولی
+### 1. Gradient Descent
 
-مسیر گسسته است و مشتق معمول ندارد. برای مسیر ثابت و زمان پیوسته، مشتق‌پذیری `C_e(t)` امکان محاسبهٔ گرادیان را می‌دهد؛ گرادیان لیپشیتز و گام مناسب نزول را تضمین می‌کنند. گوسی با `sigma > 0` نرم است، ولی تضمین کمینهٔ سراسری نداریم. خروجی باید به شبکهٔ زمانی برگردانده و ارزیابی شود.
+A route is discrete, so ordinary derivatives do not apply. With a fixed route and continuous departure time, differentiable `C_e(t)` allows gradient calculation; a Lipschitz gradient and suitable step size support descent within the allowed interval. Gaussian peaks with `sigma > 0` are smooth, but global optimality is not guaranteed. The result must be mapped back to the time grid and evaluated.
 
-### ۲. جست‌وجوی محلی و تدریجی
+### 2. Local vs. Incremental Search
 
-نمایش کامل، تغییر هم‌زمان مسیر و ساعت و محاسبهٔ ترافیکِ مراحل بعد را ساده می‌کند. برای ساعت ثابت و شبکهٔ FIFO، دایکسترای وابسته به زمان هم درست است. بازه‌های زمانی متعدد، محدودیت کل مسیر یا نقض FIFO کار را سخت‌تر می‌کنند؛ جست‌وجوی محلی با بودجهٔ محدود جواب تقریبی می‌دهد.
+A complete state makes it easier to change both route and departure and evaluate downstream traffic. Time-dependent Dijkstra is also valid for a fixed departure in a FIFO network. Multiple departure choices, whole-route constraints, or non-FIFO behavior complicate the search. Local search offers approximate results within a limited budget.
 
-### ۳. Beam و ژنتیک
+### 3. Beam vs. GA
 
-ترکیب، بخش‌های خوب دو والد را یکجا می‌سازد؛ Beam فقط همسایه‌ها را انتخاب می‌کند. با پیش‌فرض و seed برابر ۴۲، تنوع Beam در سناریوی دو اوج از ۶ به ۲ رسید؛ فروپاشی کامل ندیدم. حالت تکراری حذف شد؛ محدودکردن سهم هر مسیر یا افزودن حالت تصادفی هم می‌تواند کمک کند.
+Crossover can combine useful segments from two parents; Beam only selects generated neighbors. With defaults and seed 42, Beam's distinct routes fell from six to two in the dual-peak scenario, without complete collapse. Duplicate states were removed. Route quotas or random immigrants could preserve more diversity.
 
-### ۴. حرکت افقی
+### 4. Sideways Moves
 
-مسیرهای هم‌طول با ترافیک مشابه، سطح هم‌هزینه می‌سازند. حرکت افقی کمک می‌کند از آن عبور کنیم، ولی سقف زیاد رفت‌وبرگشت اضافی دارد. سقف صفر نسبت به ۱۰۰، کیفیت ارزیابی را کم نکرد و زمان متوسط پنج سناریو از حدود ۴۵ به ۶ میلی‌ثانیه رسید؛ این نتیجه مختص همین داده‌هاست.
+Equal-length routes with similar traffic can create plateaus. Sideways moves help cross them, but a large allowance can waste time cycling. Reducing the limit from 100 to zero preserved evaluation quality and reduced average runtime across five scenarios from about 45 to 6 ms. This result is specific to these datasets.
 
-### ۵. برنامهٔ سرمایش
+### 5. Cooling Schedule
 
-دمای بالا حرکت بد زیادی می‌پذیرد؛ دمای پایین خطر گیرکردن دارد. روی seedهای تنظیم، `alpha=0.5` میانگین فاصلهٔ ۱۹٫۱۶٪ از جواب دقیق داشت؛ `alpha=0.999` فاصلهٔ صفر داشت، ولی به سقف ۳۰۰۰ تکرار رسید. سرمایش سریع ارزان‌تر و کم‌کیفیت‌تر بود.
+High temperature accepts many poor moves; low temperature risks getting trapped. On tuning seeds, `alpha=0.5` produced a mean optimality gap of 19.16%. With `alpha=0.999`, the gap was zero, but the search reached the 3,000-iteration limit. Fast cooling was cheaper but less accurate.
 
-### ۶. مسیرهای مجزا و وابستگی اجزا
+### 6. Disjoint Parents and Epistasis
 
-بدون تقاطع میانی مشترک، مسیر یکی از والدها حفظ و ساعت میانگین به نزدیک‌ترین زمان مجاز تبدیل می‌شود. فرزند دو والد خوب هم ممکن است بد باشد: تغییر بخش اول یا ساعت حرکت، زمان ورود به بخش دوم را عوض می‌کند و خودرو به اوج ترافیک می‌رسد.
+Without a shared intermediate node, crossover keeps one parent's route and snaps the average departure to the nearest valid slot. Two good parents can still produce a poor child: changing the first segment or departure changes entry times downstream and may hit a traffic peak.
 
-### ۷. اندازهٔ فضای حالت
+### 7. State-Space Size
 
-تخمین `N_t b^L` با میانگین‌ها کران قطعی نیست. با `n=|V|` و حداکثر درجهٔ خروجی `d`، برای مسیر بدون دور داریم:
+The estimate `N_t b^L` is not a rigorous upper bound when `b` and `L` are averages. For `n=|V|` and maximum out-degree `d`, loop-free routes satisfy:
 
 $$|X| \le N_t\sum_{\ell=1}^{n-1}d^\ell.$$
 
-رشد نمایی، شمارش کامل را در شبکهٔ بزرگ پرهزینه می‌کند؛ جست‌وجوی محلی بخشی از حالت‌ها را بررسی می‌کند و تضمین جواب سراسری ندارد.
+Exponential growth makes exhaustive search expensive on large networks. Local search explores only part of the space and does not guarantee a global optimum.
 
-## اجرا و استفاده از ابزار
+## Validation and Tool Use
 
-هر ۶۵ تست پاس شد. اجرای آزمایش‌ها: `python experiments/benchmark.py`.
+All 65 tests passed. Reproduce experiments with `python experiments/benchmark.py`.
 
-از Codex برای کد، تست، آزمایش و نگارش استفاده شد. دستورها شامل «تمام کار های که گفته شده رو انجام بده با رعایت همه ی نکات که در pdf ذکر شده» و «با لحن دانشجویی و انسانی بنویس» بود.
+Codex assisted with code, tests, experiments, and writing. Main instructions, translated from Persian, were: "Complete all requested work while following the PDF" and "Write in a natural student voice."

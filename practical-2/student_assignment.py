@@ -174,10 +174,10 @@ def _timed(agent_name: str, obs: Dict, game: PacmanGame, **kwargs) -> Action:
 # The player has up to 13 legal actions including STAY: roughly 13^depth nodes.
 
 MINIMAX_DEPTH      = 3     # plain minimax: every extra ply can be ~13x slower
-ALPHABETA_DEPTH    = 6     # pruning makes much deeper search affordable
+ALPHABETA_DEPTH    = 4     # tuned: deeper paranoid search did not play better
 
 MCTS_ITERATIONS    = 500   # selection → backprop cycles per move
-MCTS_ROLLOUT_DEPTH = 20    # steps per rollout (simulation phase)
+MCTS_ROLLOUT_DEPTH = 5     # tuned: short guided rollouts beat 10, 20 and 40 steps
 MCTS_C             = 1.41  # UCB1 exploration constant (C in Q + C*sqrt(ln(N)/n))
 MCTS_ROLLOUT_POLICY  = 'guided'  # 'guided' (see _rollout_action) or 'random'
 MCTS_ROLLOUT_EPSILON = 0.2       # guided policy: chance of a random useful action

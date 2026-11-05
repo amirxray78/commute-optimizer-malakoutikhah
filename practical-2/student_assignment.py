@@ -120,6 +120,20 @@ SEARCH_TIME_BUDGET = 4.0  # Leave time for worker startup and returning the acti
 _SEARCH_DEADLINE = ContextVar('search_deadline', default=None)
 
 _timeout_counter: Dict[str, int] = {}
+# Successors simulated by minimax / alpha-beta (useful for measuring pruning).
+_search_stats: Dict[str, int] = {'nodes': 0}
+
+# Offsets for each shooting action, used for move ordering and rollouts.
+_SHOOT_DELTAS = {
+    Action.SHOOT_UP: (0, -1), Action.SHOOT_DOWN: (0, 1),
+    Action.SHOOT_LEFT: (-1, 0), Action.SHOOT_RIGHT: (1, 0),
+    Action.SHOOT_UP_LEFT: (-1, -1), Action.SHOOT_UP_RIGHT: (1, -1),
+    Action.SHOOT_DOWN_LEFT: (-1, 1), Action.SHOOT_DOWN_RIGHT: (1, 1),
+}
+_MOVE_DELTAS = {
+    Action.UP: (0, -1), Action.DOWN: (0, 1),
+    Action.LEFT: (-1, 0), Action.RIGHT: (1, 0),
+}
 
 
 def _worker(agent_name: str, obs: Dict, state: GameState,
@@ -294,6 +308,7 @@ def _search_successor(game: PacmanGame, action: Action):
     """
     _check_search_deadline()
     rng_state = random.getstate()
+    _search_stats['nodes'] += 1
     try:
         child = game.clone()
         child.step(action)
@@ -404,25 +419,70 @@ def alphabeta_agent(obs: Dict, game: PacmanGame,
     Returns:
         The Action with the highest minimax value.
 
-    TODO:
-      1. alpha = -inf, beta = +inf, best_action = None.
-      2. For each legal action (order them — see hint below):
-           a. Clone the game and clone.step(action).
-           b. value = _alphabeta(clone, depth - 1, alpha, beta, maximising=False)
-           c. If value beats the best so far, remember this action.
-           d. alpha = max(alpha, value)   ← lets later siblings prune earlier
-      3. Return best_action.
-
-    Hint — move ordering matters a lot. Pruning is strongest when the best
-    move is searched first. Cheap ideas: try shots at adjacent ghosts first,
-    or sort children by evaluate_state() after one step (best-first for MAX,
-    worst-first for MIN).
-
-    Hint — if a move takes too long, lower ALPHABETA_DEPTH, or try iterative
-    deepening: search depth 1, 2, 3, … until a time limit and keep the result
-    of the last completed depth (it also gives you a great move ordering).
+    Implementation notes:
+      • Iterative deepening (1, 2, …, depth) under the same internal time
+        budget as minimax; an interrupted depth never replaces the action of
+        the last completed depth.
+      • Root ordering: the previous depth's scores, best first. Inner nodes
+        use a cheap static ordering (_order_actions).
+      • Successors come from _search_successor, so every node sees the same
+        sampled ghost transition as in minimax regardless of visiting order.
+        Therefore the root value always equals minimax's value at the same
+        depth. When several root moves tie, the chosen move may differ,
+        because pruned siblings only return bounds.
     """
-    raise NotImplementedError("Implement alphabeta_agent().")
+    if isinstance(depth, bool) or not isinstance(depth, int) or depth < 1:
+        raise ValueError("depth must be a positive integer.")
+    actions = game.get_legal_actions()
+    if game.done or not actions:
+        return Action.STAY
+    best_action = actions[0]
+    root_order = _order_actions(game, actions, maximising=True)
+    token = _SEARCH_DEADLINE.set(time.perf_counter() + SEARCH_TIME_BUDGET)
+    try:
+        for search_depth in range(1, depth + 1):
+            alpha, beta = -math.inf, math.inf
+            iteration_action, scores = root_order[0], {}
+            try:
+                for action in root_order:
+                    with _search_successor(game, action) as child:
+                        value = _alphabeta(child, search_depth - 1, alpha, beta,
+                                           maximising=False)
+                    scores[action] = value
+                    if value > alpha:
+                        iteration_action, alpha = action, value
+            except _SearchTimeout:
+                break
+            best_action = iteration_action
+            # Stable sort: previous-depth scores give the next depth's ordering.
+            root_order = sorted(root_order, key=lambda a: scores[a], reverse=True)
+    finally:
+        _SEARCH_DEADLINE.reset(token)
+    return best_action
+
+
+def _order_actions(game: PacmanGame, actions: List[Action],
+                   maximising: bool) -> List[Action]:
+    """Cheap move ordering for alpha-beta (never changes the minimax value).
+
+    MAX tries the moves that are usually best first: shots that hit an adjacent
+    ghost, then moves, then STAY, and wasted shots last. MIN tries the same
+    list in reverse, so the moves that are usually worst for the player come
+    first. Game stand-ins without player and ghost fields keep their order.
+    """
+    player = getattr(game, 'player', None)
+    ghosts = getattr(game, 'ghosts', None)
+    if player is None or ghosts is None:
+        return list(actions)
+    targets = {(g.x - player.x, g.y - player.y) for g in ghosts if g.alive}
+
+    def rank(action: Action) -> int:
+        delta = _SHOOT_DELTAS.get(action)
+        if delta is not None:
+            return 0 if delta in targets else 3
+        return 2 if action == Action.STAY else 1
+
+    return sorted(actions, key=rank, reverse=not maximising)
 
 
 def _alphabeta(game: PacmanGame, depth: int, alpha: float, beta: float,
@@ -446,8 +506,33 @@ def _alphabeta(game: PacmanGame, depth: int, alpha: float, beta: float,
     Sanity check: at the same depth, alphabeta_agent and minimax_agent must
     pick moves with the same value. Count visited nodes in both to see how
     much pruning saves.
+
+    Fail-soft: a pruned node returns its bound instead of clamping it to
+    alpha/beta. Both bounds are still correct, and the root ordering uses them.
     """
-    raise NotImplementedError("Implement _alphabeta().")
+    _check_search_deadline()
+    if depth <= 0 or game.done:
+        return evaluate_state(game)
+    actions = game.get_legal_actions()
+    if not actions:
+        return evaluate_state(game)
+    if maximising:
+        value = -math.inf
+        for action in _order_actions(game, actions, maximising=True):
+            with _search_successor(game, action) as child:
+                value = max(value, _alphabeta(child, depth - 1, alpha, beta, False))
+            alpha = max(alpha, value)
+            if alpha >= beta:
+                break  # beta cut-off
+        return value
+    value = math.inf
+    for action in _order_actions(game, actions, maximising=False):
+        with _search_successor(game, action) as child:
+            value = min(value, _alphabeta(child, depth - 1, alpha, beta, True))
+        beta = min(beta, value)
+        if beta <= alpha:
+            break  # alpha cut-off
+    return value
 
 
 # ──────────────────────────────────────────────────────────────────────────────
